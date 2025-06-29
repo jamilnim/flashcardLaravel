@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 
 class NameController extends Controller
 {
@@ -21,18 +22,22 @@ class NameController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'color' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
         ]);
 
         // Get input data
         $name = $request->input('name');
         $color = $request->input('color');
+        $category = $request->input('category');
+
+        Log::info('New entry added',['name' => $name,'color' => $color,'category'=>$category]);
 
 
         // Retrieve names from session or initialize empty array
         $names = session('names', []);
 
         // Add new name-color pair to the array
-        $names[] = ['name' => $name, 'color' => $color];
+        $names[] = ['name' => $name, 'color' => $color,'category'=>$category];
 
         // Store updated names in session
         session(['names' => $names]);

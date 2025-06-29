@@ -1,104 +1,79 @@
-# Name and Color Manager
+# 📘 Finnish Vocabulary Flashcard App
 
-This is a simple Laravel project designed for educational purposes. It allows users to:
-- Add a name and a color (e.g., `red`, `#FF0000`, `rgb(255, 0, 0)`).
-- View a list of stored names with their associated colors.
-- Edit or delete existing entries.
+This web application was developed as part of an academic program under the supervision of **Santus**. It serves as a vocabulary learning tool for Finnish language learners, integrating interactive flashcards, external API integration, and persistent user data handling.
 
-The project uses Laravel's session system to store data temporarily, making it easy to understand basic CRUD (Create, Read, Update, Delete) operations and session management.
+---
 
-## Prerequisites
+## 🎯 Features
 
-Before setting up the project, ensure you have the following installed on your computer:
-- **PHP** (>= 8.1): Laravel requires a recent version of PHP.
-- **Composer**: Dependency manager for PHP (download from [getcomposer.org](https://getcomposer.org/)).
-- **Git**: For cloning the repository (download from [git-scm.com](https://git-scm.com/)).
-- **Web Server**: A local server like Laravel's Artisan server, XAMPP, or WAMP.
-- **Optional**: A terminal or command-line interface (e.g., Command Prompt, PowerShell, or Terminal).
+- 🔄 Fetches Finnish-English vocabulary from [finnfast.fi](https://finnfast.fi)
+- 🧠 Flashcards UI built in **React** with flip/reveal interaction
+- ✅ Save favorite words (stored in a Laravel-backed database)
+- 🗂 View and manage saved favorites
+- 🎨 Additional Blade-based view for managing name-color entries
+- 🔁 Toggle between flashcards and name management via navigation
 
-## Installation
+---
 
-Follow these steps to set up the project on your computer:
+## 🛠 Technologies Used
 
-1. **Clone the Repository**:
-   - Open your terminal and run:
-     ```bash
-     git clone https://github.com/kalwar/NameApp.git
-     ```
-   - Navigate to the project directory:
-     ```bash
-     cd NameApp
-     ```
+- **Laravel 12** (PHP 8+)
+- **React 18**
+- **Blade Templates** + React-based UI
+- **Vite** for frontend asset bundling
+- **Finnfast API** for live vocabulary
 
-2. **Install Dependencies**:
-   - Run the following command to install Laravel and its dependencies:
-     ```bash
-     composer install
-     ```
+---
 
-3. **Set Up Environment**:
-   - Copy the `.env.example` file to `.env`:
-     ```bash
-     cp .env.example .env
-     ```
-   - Generate an application key:
-     ```bash
-     php artisan key:generate
-     ```
+## 🚀 Setup Instructions
 
-4. **Optional: Configure Sessions**:
-   - This project uses the default file-based session driver, so no additional configuration is needed.
-   - Ensure the `storage/framework/sessions` directory is writable by your web server (Laravel creates it automatically).
+1. **Clone the Repository**
 
-5. **Run the Application**:
-   - Start Laravel's built-in development server:
-     ```bash
-     php artisan serve
-     ```
-   - Open your browser and visit `http://localhost:8000/` to access the application.
+   ```bash
+   git clone https://github.com/your-username/flashcard-app.git
+   cd flashcard-app
+   ```
 
-## Using the Application
+2. **Install Backend Dependencies**
 
-- **Add a Name and Color**:
-  - Enter a name and a valid CSS color (e.g., `red`, `#FF0000`, `rgb(255, 0, 0)`) in the form.
-  - Click "Submit" to save the entry.
-- **View Entries**:
-  - The list below the form shows all stored names, displayed in their chosen colors.
-- **Edit an Entry**:
-  - Click "Edit" next to an entry to prefill the form with its data.
-  - Update the name or color and click "Update".
-- **Delete an Entry**:
-  - Click "Delete" next to an entry and confirm to remove it.
+   ```bash
+   composer install
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Troubleshooting
+3. **Install Frontend Dependencies**
 
-- **Route Not Found Error**:
-  - Run `php artisan route:clear` and `php artisan cache:clear` to clear cached routes.
-  - Verify routes with `php artisan route:list`.
-- **Invalid Color Error**:
-  - Ensure colors are valid CSS values (e.g., `red`, `#FF0000`). Invalid inputs will trigger validation errors.
-- **Session Issues**:
-  - Check that `storage/framework/sessions` is writable.
-  - Clear sessions with `php artisan session:clear` if needed.
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-## Understanding Laravel Sessions
+4. **Run Migrations**
 
-Laravel's session system allows you to store data for a user across multiple requests, making it ideal for temporary data like form inputs or user preferences. Here's a brief overview:
+   ```bash
+   php artisan migrate
+   ```
 
-- **What is a Session?**: A session is like a temporary storage box for each user visiting your site. It holds data (e.g., names and colors in this project) until the session expires or is cleared.
-- **How It Works**: Laravel assigns a unique session ID to each user, stored in a browser cookie. The actual data is saved on the server (in files, a database, or memory) and linked to this ID.
-- **In This Project**: The application stores an array of name-color pairs in the session using `session(['names' => $names])`. The data persists until the session expires (default: 120 minutes) or is manually cleared.
-- **Key Functions**:
-  - Store data: `session(['key' => 'value'])`.
-  - Retrieve data: `session('key')`.
-  - Delete data: `session()->forget('key')`.
-- **Configuration**: Sessions are configured in `config/session.php`. This project uses the default `file` driver, storing session data in `storage/framework/sessions`.
+5. **Start the Laravel Server**
 
-## Project Structure
+   ```bash
+   php artisan serve
+   ```
 
-- **Controller**: `app/Http/Controllers/NameController.php` handles all logic (add, edit, delete, display).
-- **View**: `resources/views/name.blade.php` contains the form and list display.
-- **Routes**: `routes/web.php` defines the URLs (`/`, `/{id}/edit`, etc.).
-- **Session Storage**: Data is stored in the session, not a database, for simplicity.
+---
 
-If you encounter issues or have questions, refer to the [Laravel Documentation](https://laravel.com/docs).
+## 🌐 Routes Overview
+
+- `/` → Flashcard App (React)
+- `/name` → Name-Color Manager (Blade)
+- `/favorites-view` → View saved favorite words
+- `/proxy/words` → API proxy to fetch vocab with your API key
+- `/favorites` → Save/delete favorite words via Laravel
+
+---
+
+## 🙏 Acknowledgements
+
+This application was developed as an **academic assignment** under the guidance of Kalwar Santosh  
+Special thanks to [finnfast.fi](https://finnfast.fi) for providing the vocabulary API.

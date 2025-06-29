@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Flex layout for all cards */
+.allCardsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 90rem; /* 4 cards x 20rem + 3 gaps */
+  justify-content: flex-start;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+.filterContaner{
+    display: flex;
+   justify-content: space-between;
+    width: 100%;
+}
+label{
+    margin-left: 1rem;
+}
+input{
+    width: 6rem;
+}
+
+.cardControl{
+margin-left: 1rm;
+margin-right: 1rem;
+width: 4rem;
+font-size: large;
+}
+

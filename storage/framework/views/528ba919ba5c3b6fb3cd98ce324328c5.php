@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+    <title>Finnish Flashcards</title>
+    <?php echo app('Illuminate\Foundation\Vite')->reactRefresh(); ?>
+    <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css','resources/js/Components/Favoritescard.jsx']); ?>
+
+</head>
+
+<body>
+    <header>
+        <div class="header-title">Favorite Flashcards</div>
+        <div class="nav-links">
+            <a href="/name">Name Color App</a>
+            <a href="/flashcards">Flashcards</a>
+            <a href="/favorites-view">Favorites</a>
+        </div>
+    </header>
+
+    <main style="padding: 2rem;">
+        <?php echo $__env->yieldContent('content'); ?>
+    </main>
+</body>
+
+</html>
+<?php /**PATH /Users/s2500148/Herd/NameApp/resources/views/layouts/FavCardapp.blade.php ENDPATH**/ ?>
